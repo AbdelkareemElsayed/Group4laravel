@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('Message',function (){
+// Route::get('Message',function (){
 
-    echo 'Welcome to laravel';
-});
+//     echo 'Welcome to laravel';
+// });
 
 
 // Route::get('Student',function (){
@@ -28,18 +28,25 @@ Route::get('Message',function (){
 // });
 
 
-Route::view('Profile', 'student');
+ Route::get('Message','testController@Message');
+ Route::get('Profile','testController@GetProfile');
+
+ Route::get('Register','testcontroller@register');
+
+ Route::post('StoreStudent','testcontroller@Store');
+ Route::get('display','testController@displayStudents');
+
+ Route::get('deleteStudent/{id}','testController@deleteStudent');
 
 
-Route::view('SignUp', 'Register');
-
-Route::post('Create',function (){
-    echo 'Your data sended';
-});
 
 
 
-
+//Route::view('Profile', 'student');
+// Route::view('SignUp', 'Register');
+// Route::post('Create',function (){
+//     echo 'Your data sended';
+// });
 // Route::any('Student',function (){
 //     return view('student');
 // });
@@ -57,10 +64,20 @@ Route::match(['post','get'],'Student',function (){
 Route::get('User/{id?}',function ($var = null){
 
     echo 'User Id = '.$var;
-})->where('id','[0-9]+');
+});
 
 
 
+Route::get('Subjcts/{id?}',function ($var = null){
+
+    echo 'Sub Id = '.$var;
+});
+
+
+
+Route::get('Student/{name}/{id}',function ($name,$id){
+    echo 'Student Name : '.$name;
+})->where('name','[A-Za-z]+');
 
 
 /*

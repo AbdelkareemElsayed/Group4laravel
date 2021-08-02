@@ -13,7 +13,26 @@
 
 <div class="container">
   <h2>Register</h2>
-  <form  method="post"  action="{{ url('/Create') }}"  enctype ="multipart/form-data">
+
+
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+  @isset($message)
+      {{ $message }}
+  @endisset
+
+
+
+  <form  method="post"  action="{{ url('/StoreStudent') }}"  enctype ="multipart/form-data">
  
     
     {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -25,7 +44,7 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
 
   <div class="form-group">
