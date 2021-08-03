@@ -68,7 +68,7 @@
 
                  <td>
                  <a href='{{ url('deleteStudent/'.$fetchedData->id) }}' class='btn btn-danger m-r-1em'>Delete</a>
-                 <a href='' class='btn btn-primary m-r-1em'>Edit</a>       
+                 <a href='{{ url('edit/'.$fetchedData->id) }}' class='btn btn-primary m-r-1em'>Edit</a>       
                 </td>
 
            </tr>  

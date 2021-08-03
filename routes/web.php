@@ -31,13 +31,31 @@ Route::get('/', function () {
  Route::get('Message','testController@Message');
  Route::get('Profile','testController@GetProfile');
 
- Route::get('Register','testcontroller@register');
 
- Route::post('StoreStudent','testcontroller@Store');
  Route::get('display','testController@displayStudents');
-
+ Route::get('Register','testcontroller@register');
+ Route::post('StoreStudent','testcontroller@Store');
  Route::get('deleteStudent/{id}','testController@deleteStudent');
+ Route::get('edit/{id}','testController@showData');
+ Route::post('update','testController@edit');
 
+
+ Route::resource('Users','userController');
+
+ Route::get('Login','userController@loginView');
+
+ Route::post('doLogin','userController@login');
+
+ Route::get('LogOut','userController@logout');
+
+ /*
+    Users        (get)          Route::get('Users','userController@index'); 
+    Users/create (get)          Route::get('Users/create','userController@create'); 
+    Users        (post)         Route::post('Users','userController@store'); 
+    Users/{id}/edit (get)       Route::get('Users/{id}/edit','userController@edit'); 
+    Users/{id}   (put)          Route::put('Users/{id}','userController@update'); 
+    Users/{id}   (delete)       Route::delete('Users/{id}','userController@destroy'); 
+ */
 
 
 
@@ -90,3 +108,21 @@ Route::get('Student/{name}/{id}',function ($name,$id){
  match 
  option 
 */ 
+
+
+
+
+
+
+/*
+    task .... 
+
+
+    1-create db . 
+    2- tasks (title,desc)
+
+
+
+
+
+*/

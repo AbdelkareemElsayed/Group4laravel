@@ -101,6 +101,40 @@ class testController extends Controller
 
 
 
+   public function showData($id){
+    // Logic
+
+    // $data = student::where('id',$id)->get();
+       $data = student::find($id);
+
+       return view('edit',['data' => $data]);
+
+   }
+
+
+   public function edit(Request $request){
+    
+    // logic ... 
+
+       $data =    $this->validate(request(),[
+        "email"    => "required|email",
+      ]);
+
+
+      $op = student::where('id',$request->id)->update($data);
+
+      if($op){
+          return back();
+      }else{
+          echo 'error try again';
+      }
+
+
+   }
+
+
+
+
 
     // public function Message(){
     //     echo 'welcome to laravel';
