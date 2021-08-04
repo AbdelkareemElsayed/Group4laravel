@@ -8,8 +8,22 @@ use App\Models\User;
 
 use App\Models\student;
 
+use DB;
+
 class userController extends Controller
 {
+
+
+
+
+       public   function __construct(){
+                 
+            $this->middleware('checkAuth',['except' => ['index','loginView','login']]);
+
+       }
+
+
+     
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +32,10 @@ class userController extends Controller
     public function index()
     {
         //
-        $data = User::orderby('id','desc')->get();
+           $data = User::with('Subjects')->orderby('id','desc')->get();
+
+
+        //  $data = DB::table('subject');
 
         return view('usersModule.index',['data' => $data]);
     }
@@ -176,8 +193,15 @@ class userController extends Controller
         "password"  => "required|min:6"
      ]);
 
+       $flag = false;
+       
+       if($request->rem_me){
+           $flag = true;
+       }
 
-     if(auth()->attempt($data,false)){
+
+
+     if(auth()->attempt($data,$flag)){
 
         return redirect(url('/Users'));
      }else{

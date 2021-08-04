@@ -27,7 +27,7 @@
 
 
 
-  <form  method="post"  action="{{ url('/doLogin') }}"  enctype ="multipart/form-data">
+  <form  method="post"  action="{{ (url('/doLogin')) }}"  enctype ="multipart/form-data">
  
      @csrf
 
@@ -41,6 +41,12 @@
     <input type="password"   value="{{ old('password') }}"  name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
  
+
+  
+  <div class="form-group">
+    <input type="checkbox" name="rem_me">
+    <label for="exampleInputPassword1">remember Me</label>
+  </div>
   
   <button type="submit" class="btn btn-primary">Login</button>
 </form>

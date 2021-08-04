@@ -40,13 +40,18 @@ Route::get('/', function () {
  Route::post('update','testController@edit');
 
 
- Route::resource('Users','userController');
+ Route::resource('Users','userController');//->middleware('checkAuth');
 
- Route::get('Login','userController@loginView');
+ Route::get('Login','userController@loginView')->name('login');
 
  Route::post('doLogin','userController@login');
 
  Route::get('LogOut','userController@logout');
+
+Route::resource('Subject','subjectController');
+
+
+
 
  /*
     Users        (get)          Route::get('Users','userController@index'); 
@@ -120,6 +125,26 @@ Route::get('Student/{name}/{id}',function ($name,$id){
 
     1-create db . 
     2- tasks (title,desc)
+
+
+
+    ====================================
+
+
+    users 
+
+    1 - register  (email,password,role) roles[1-admin,2-students]
+    2-  login 
+    3- logout 
+
+
+    4 - create view activateSystem  role = 1
+
+
+
+
+
+
 
 
 

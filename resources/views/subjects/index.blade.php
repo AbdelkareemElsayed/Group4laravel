@@ -36,7 +36,7 @@
  
 
         <div class="page-header">
-            <h1>Users  </h1> <br>
+            <h1>Subjects  </h1> <br>
 
             <?php // auth()->user()->name.'|||'.auth()->user()->id  ?>
 
@@ -60,10 +60,9 @@
             <!-- creating our table heading -->
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Title</th>
+                <th>Added By</th>
                 <th>CreatedAt</th>
-                <th>Subjects</th>
                 <th>Action</th>
             </tr>
 
@@ -71,17 +70,18 @@
 
     @foreach ($data as $fetchedData )
         
+
+
+
            <tr>
                 <td>{{ $fetchedData->id }}</td>
-                <td>{{ $fetchedData->name }}</td>
-                <td>{{ $fetchedData->email }}</td>
+                <td>{{ $fetchedData->title }}</td>
+                <td>{{ $fetchedData->add_by->name }}</td>
                 <td>{{ $fetchedData->created_at }}</td>
-                <td><a href='' data-toggle="modal" data-target="#modal_single_sub{{ $fetchedData->id  }}" class='btn btn-info'>Show</a>
-                </td>
 
                  <td>       
                     <a href='' data-toggle="modal" data-target="#modal_single_del{{ $fetchedData->id  }}" class='btn btn-danger m-r-1em'>Delete</a>
-                    <a href='{{ url('Users/'.$fetchedData->id.'/edit') }}' class='btn btn-primary m-r-1em'>Edit</a>       
+                    <a href='{{ url('Subject/'.$fetchedData->id.'/edit') }}' class='btn btn-primary m-r-1em'>Edit</a>       
                 </td>
 
            </tr>  
@@ -100,10 +100,10 @@
         
                     <div class="modal-body">
                             
-                        {{ $fetchedData->name }}
+                        {{ $fetchedData->title }}
                     </div>
                     <div class="modal-footer">
-                        <form action="{{ url('Users/'.$fetchedData->id) }}" method="post">
+                        <form action="{{ url('Subject/'.$fetchedData->id) }}" method="post">
                             @csrf
                             <input type="hidden" name="_method" value="delete">
                              
@@ -116,40 +116,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-  {{-- Subject Modal --}}
-
-        <div class="modal" id="modal_single_sub{{ $fetchedData->id  }}" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Subjects</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-                   </button>
-                    </div>
-        
-                    <div class="modal-body">
-
-                        @foreach ($fetchedData->Subjects as $value)
-                            {{ $value->title }} <br>
-                        @endforeach
-
-
-                      
-                    </div>
-                    <div class="modal-footer">
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
 
 
 
