@@ -18,7 +18,7 @@ class userController extends Controller
 
        public   function __construct(){
                  
-            $this->middleware('checkAuth',['except' => ['index','loginView','login']]);
+          // $this->middleware('checkAuth',['except' => ['index','loginView','login']]);
 
        }
 
@@ -66,6 +66,10 @@ class userController extends Controller
             "name"  => "required|min:3",
             "email" => "required|email|unique:users",
             "password" => "required|min:6",
+        ],[],[
+
+            // "name"   => trans("labels.nameattr")
+
         ]);
 
 

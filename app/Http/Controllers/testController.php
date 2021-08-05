@@ -10,6 +10,12 @@ class testController extends Controller
 {
     //
 
+    public   function __construct(){
+                 
+        $this->middleware('studentCheck',['except' => ['login_show','login']]);
+
+    }
+
 
 
 
@@ -154,6 +160,46 @@ class testController extends Controller
 
 
     // }
+
+
+    public function login_show(){
+
+        return view('StudentLogin');
+    }
+
+
+    public function login(Request $request){
+        // Logic 
+    
+         $data = $this->validate($request,[
+    
+            "email"     => "required|email",
+            "password"  => "required|min:6"
+         ]);
+    
+           $flag = false;
+           
+           if($request->rem_me){
+               $flag = true;
+           }
+    
+    
+    
+         if(auth()->guard('student')->attempt($data,$flag)){
+    
+           return redirect(url('/display'));
+
+        
+        }else{
+          return redirect(url('/StudentLogin'));
+   
+        }
+    
+    
+       }
+    
+
+
 
 
 }

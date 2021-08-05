@@ -36,11 +36,24 @@
  
 
         <div class="page-header">
-            <h1>Users  </h1> <br>
+            <h1>{{ trans('labels.users') }}  </h1> <br>
 
-            <?php // auth()->user()->name.'|||'.auth()->user()->id  ?>
+            <?php // auth()->user()->name.'|||'.auth()->user()->id 
+            
+            
+    
+            
+            ?>
 
             {{ session()->get('Message') }}
+
+
+      
+
+
+       
+
+
   
             <?php 
                 
@@ -48,7 +61,10 @@
             
                 // session()->flush();
             ?>
-<a href="{{ url('/LogOut') }}"> Logout</a>
+<a href="{{ url('/Lang/ar') }}"> ع</a>
+<a href="{{ url('/Lang/en') }}"> En</a>
+
+<a href="{{ url('/LogOut') }}"> {{ trans('labels.logout') }}</a>
 
         </div>
 
@@ -59,12 +75,12 @@
         <table class='table table-hover table-responsive table-bordered'>
             <!-- creating our table heading -->
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>CreatedAt</th>
-                <th>Subjects</th>
-                <th>Action</th>
+                <th>{{ trans('labels.id') }}</th>
+                <th>{{ trans('labels.name') }}</th>
+                <th>{{ trans('labels.email') }}</th>
+                <th>{{ trans('labels.created_at') }}</th>
+                <th>{{ trans('labels.subject') }}</th>
+                <th>{{ trans('labels.action') }}</th>
             </tr>
 
     
@@ -73,15 +89,21 @@
         
            <tr>
                 <td>{{ $fetchedData->id }}</td>
-                <td>{{ $fetchedData->name }}</td>
+                
+               @if(app()->getLocale() == 'en')
+                   <td>{{ $fetchedData->name }}</td>
+               @else
+                   <td>{{ $fetchedData->nameAr }}</td>      
+               @endif
+
                 <td>{{ $fetchedData->email }}</td>
                 <td>{{ $fetchedData->created_at }}</td>
-                <td><a href='' data-toggle="modal" data-target="#modal_single_sub{{ $fetchedData->id  }}" class='btn btn-info'>Show</a>
+                <td><a href='' data-toggle="modal" data-target="#modal_single_sub{{ $fetchedData->id  }}" class='btn btn-info'>{{ trans('labels.show') }}</a>
                 </td>
 
                  <td>       
-                    <a href='' data-toggle="modal" data-target="#modal_single_del{{ $fetchedData->id  }}" class='btn btn-danger m-r-1em'>Delete</a>
-                    <a href='{{ url('Users/'.$fetchedData->id.'/edit') }}' class='btn btn-primary m-r-1em'>Edit</a>       
+                    <a href='' data-toggle="modal" data-target="#modal_single_del{{ $fetchedData->id  }}" class='btn btn-danger m-r-1em'>{{ trans('labels.delete') }}</a>
+                    <a href='{{ url('Users/'.$fetchedData->id.'/edit') }}' class='btn btn-primary m-r-1em'>{{ trans('labels.edit') }}</a>       
                 </td>
 
            </tr>  

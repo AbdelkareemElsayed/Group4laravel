@@ -17,6 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+ Route::get('/Lang/{lang}',function ($lang){
+     
+    // code .... 
+      session()->put('lang',$lang);     
+      return back();
+ });
+
+
+
 // Route::get('Message',function (){
 
 //     echo 'Welcome to laravel';
@@ -31,13 +41,15 @@ Route::get('/', function () {
  Route::get('Message','testController@Message');
  Route::get('Profile','testController@GetProfile');
 
-
+// student
  Route::get('display','testController@displayStudents');
  Route::get('Register','testcontroller@register');
  Route::post('StoreStudent','testcontroller@Store');
  Route::get('deleteStudent/{id}','testController@deleteStudent');
  Route::get('edit/{id}','testController@showData');
  Route::post('update','testController@edit');
+ Route::get('StudentLogin','testController@login_show');
+ Route::post('StudentDoLogin','testController@login');
 
 
  Route::resource('Users','userController');//->middleware('checkAuth');
